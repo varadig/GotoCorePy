@@ -1,4 +1,5 @@
 ﻿from core.base.CoreBaseClassFactory import CoreBaseClassFactory
+from core.utils.Log import Log
 
 
 class CoreBaseClass(object):
@@ -31,8 +32,7 @@ class CoreBaseClass(object):
         return CoreBaseClassFactory.createCallBack(self, group);
 
     def log(self, message):
-        print (message)
-        # Log.add(message);
+        Log.add(message)
 
     def generateName(self):
         CoreBaseClass._nameIndex += 1

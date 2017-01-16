@@ -1,10 +1,10 @@
 ﻿from core.base.CoreBaseClass import CoreBaseClass
-from core.utils import CoreUtils
+from core.utils.CoreUtils import CoreUtils
 
 
 class CoreBaseLogger(CoreBaseClass):
     def __init__(self):
-        self.br = "/n"
+        self.br = "\n"
 
     def addLog(self, *messages):
         for message in messages:
@@ -14,4 +14,4 @@ class CoreBaseLogger(CoreBaseClass):
             print (message)
 
     def createEntryFrom(self, message):
-        return (CoreUtils.timeStamp + " ----> " + message + self.br);
+        return (CoreUtils.timeStamp() + " ----> " + message + self.br);

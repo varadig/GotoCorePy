@@ -1,6 +1,10 @@
+import os
+
 from core.base.CoreBaseClass import CoreBaseClass
+from core.filesystem.CoreFileSystem import CoreFileSystem
 from core.logger.CoreLogger import CoreLogger
 from core.logger.CoreLoggerDebug import CoreLoggerDebug
+from core.logger.CoreLoggerFile import CoreLoggerFile
 from core.notification.CoreListener import CoreListener
 from core.notification.CoreNotification import CoreNotification
 from core.notification.CoreNotificationContainer import CoreNotificationContainer
@@ -14,7 +18,8 @@ class Main(CoreBaseClass):
         self.startApplication()
 
     def initCoreModules(self):
-        CoreLogger.getInstance(CoreLoggerDebug())
+        CoreFileSystem.getInstance()
+        CoreLogger.getInstance([CoreLoggerDebug(), CoreLoggerFile('gotocorepy.log')])
         CoreNotificationContainer.getInstance()
 
     def initModules(self):
@@ -47,7 +52,7 @@ class ControllerTest(CoreBaseClass):
         self.sc.registerService(ControllerTest.SERVICE,self.testService)
 
     def testService(self, params):
-        print params.get('foo')
+        self.log(params.get('foo'))
 
 
 class NotificationTest(CoreBaseClass):
@@ -63,9 +68,9 @@ class NotificationTest(CoreBaseClass):
 
     def __init__(self):
         super(NotificationTest, self).__init__()
-        CoreListener.register(NotificationTest.NOTIFICATION,self.notificationHandler)
+        CoreListener.register(NotificationTest.NOTIFICATION, self.notificationHandler)
 
     def notificationHandler(self, params):
-        print params.get('foo')
+        self.log(params.get('foo'))
 
 main = Main()

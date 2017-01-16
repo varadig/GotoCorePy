@@ -1,17 +1,13 @@
-﻿import datetime
+﻿import time
+
+import datetime
 
 from core.base.CoreBaseClass import CoreBaseClass
 
 
 class CoreUtils(CoreBaseClass):
     @staticmethod
-    def get_timeStamp():
-        timestamp = ""
-        timestamp += datetime.date.year + "-";
-        timestamp += datetime.date.month + "-";
-        timestamp += datetime.date.day + " ";
-        timestamp += datetime.time.hour + "_";
-        timestamp += datetime.time.minute + "_";
-        timestamp += datetime.time.second + "_";
-        timestamp += datetime.time.microsecond;
-        return timestamp;
+    def timeStamp():
+        ts = time.time()
+        return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
