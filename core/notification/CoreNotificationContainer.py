@@ -15,33 +15,33 @@ class CoreNotificationContainer(CoreBaseClass):
     def __init__(self):
         super(CoreNotificationContainer, self).__init__()
 
-        self.sc.registerService(CoreListener.REGISTER_LISTENER, self.registerListener);
-        self.sc.registerService(CoreListener.REMOVE_LISTENER, self.removeListener);
-        self.sc.registerService(CoreNotification.CREATE_NOTIFICATION, self.createNotification);
+        self.sc.registerService(CoreListener.REGISTER_LISTENER, self.registerListener)
+        self.sc.registerService(CoreListener.REMOVE_LISTENER, self.removeListener)
+        self.sc.registerService(CoreNotification.CREATE_NOTIFICATION, self.createNotification)
         self.mapping = {}
 
-    def registerListener(self,params):
+    def registerListener(self, params):
         name = params.get('name')
         listener = params.get('listener')
 
-        if (self.hasListener(name)==None):
-            self.mapping[name] = {};
+        if not self.hasListener(name):
+            self.mapping[name] = [];
 
         self.getListenersOf(name).append(listener);
 
-    def removeListener(self,params):
+    def removeListener(self, params):
         name = params.name
         reference = params.reference
 
         listeners= self.getListenersOf(name)
         index = self.getListenerBy(reference, listeners);
 
-        if (index != -1):
+        if index != -1:
             del listeners[index];
 
     def getListenerBy(self,reference, listeners):
         for listener in listeners:
-            if (listener.has(reference)):
+            if listener.has(reference):
                 return listeners.indexOf(listener);
         return -1;
 
@@ -50,11 +50,11 @@ class CoreNotificationContainer(CoreBaseClass):
 
         return CoreNotification(name, self.getListenersOf(name));
 
-    def hasListener(self,name):
-        return self.mapping.get(name) != None;
+    def hasListener(self, name):
+        return self.mapping.has_key(name)
 
-    def getListenersOf(self,name):
-        if(self.hasListener(name)):
+    def getListenersOf(self, name):
+        if self.hasListener(name):
             return self.mapping.get(name)
         return []
 

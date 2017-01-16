@@ -9,21 +9,63 @@ from core.notification.CoreNotificationContainer import CoreNotificationContaine
 class Main(CoreBaseClass):
     def __init__(self):
         super(Main, self).__init__()
+        self.initCoreModules()
+        self.initModules()
+        self.startApplication()
+
+    def initCoreModules(self):
         CoreLogger.getInstance(CoreLoggerDebug())
         CoreNotificationContainer.getInstance()
-        CoreListener.register("koko",self.koko)
 
-        self.sc.registerService("asd",self.asd)
-        self.sc.getService("asd").addParam("kaki",10).execute()
-        CoreNotification.createNotification("koko").send()
+    def initModules(self):
+        ControllerTest.getInstance()
+        NotificationTest.getInstance()
 
-    def asd(self,params):
-        # print params['kaki']
-        pass
+    def startApplication(self):
+        self.sc.getService(ControllerTest.SERVICE)\
+            .addParam('foo', 'service.bar')\
+            .execute()
 
-    def koko(self,params):
-        print "koko"
+        CoreNotification.createNotification(NotificationTest.NOTIFICATION)\
+            .addParam('foo', 'notification.bar')\
+            .send()
 
 
+class ControllerTest(CoreBaseClass):
+
+    SERVICE='controller.test.service'
+    instance=None
+
+    @staticmethod
+    def getInstance():
+        if ControllerTest.instance == None:
+            ControllerTest.instance = ControllerTest()
+        return ControllerTest.instance
+
+    def __init__(self):
+        super(ControllerTest, self).__init__()
+        self.sc.registerService(ControllerTest.SERVICE,self.testService)
+
+    def testService(self, params):
+        print params.get('foo')
+
+
+class NotificationTest(CoreBaseClass):
+
+    NOTIFICATION = 'notification.test.noti'
+    instance = None
+
+    @staticmethod
+    def getInstance():
+        if NotificationTest.instance == None:
+            NotificationTest.instance = NotificationTest()
+        return NotificationTest.instance
+
+    def __init__(self):
+        super(NotificationTest, self).__init__()
+        CoreListener.register(NotificationTest.NOTIFICATION,self.notificationHandler)
+
+    def notificationHandler(self, params):
+        print params.get('foo')
 
 main = Main()

@@ -3,5 +3,6 @@
 
 class CoreBaseSender(CoreBaseParameterHolder):
     def __init__(self):
+        super(CoreBaseSender, self).__init__()
         self.name = None
         self.collection = []

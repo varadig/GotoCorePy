@@ -14,9 +14,7 @@ class CoreNotification(CoreBaseSender):
 
     def send(self):
         for listener in self.collection:
-            print listener
             listener.setParams(self.params).addParam(CoreNotification.BASE_NAME, self.name).notify()
-        print "CoreNotification send"
 
     @staticmethod
     def createNotification(name):
