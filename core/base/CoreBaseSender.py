@@ -2,7 +2,7 @@
 
 
 class CoreBaseSender(CoreBaseParameterHolder):
-    def __init__(self):
+    def __init__(self, name, collection):
         super(CoreBaseSender, self).__init__()
-        self.name = None
-        self.collection = []
+        self.name = name
+        self.collection = collection

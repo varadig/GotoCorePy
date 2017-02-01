@@ -7,7 +7,7 @@ class Log(object):
         super(Log, self).__init__()
 
     @staticmethod
-    def add(*message):
+    def add(message):
         if not CoreServiceContainer.getInstance().hasService('logger.log'):
             return;
         CoreServiceContainer.getInstance()\
@@ -16,9 +16,9 @@ class Log(object):
             .execute();
 
     @staticmethod
-    def error(*message):
+    def error(message):
         Log.add("<font color='#FF0000'>" + message + "</font>")
 
     @staticmethod
-    def major(*message):
+    def major(message):
         Log.add("<font color='#000FFFF'>" + message + "</font>")

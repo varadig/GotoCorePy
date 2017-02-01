@@ -24,11 +24,13 @@ class CoreServiceContainer:
         del self.mapping[name];
 
     def getService(self, name):
-        if (self.mapping[name] == None):
+        if not self.mapping.has_key(name):
             # Log..error("Nincs ilyen service regisztrálva:  " + name);
             # ExternalInterface.call(  'alert'  ,  "Nincs ilyen service regisztrálva:  "  +  name  );
             # throw new Error("Nincs ilyen service regisztrálva:  " + name);
-            print("Nincs ilyen service regisztrálva:  " + name)
+            raise ValueError("Nincs ilyen service regisztrálva:  " + name)
+
+
 
         return CoreService(name, self.mapping[name]).addParam(CoreService.CORE_SERVICE_NAME, name)
 

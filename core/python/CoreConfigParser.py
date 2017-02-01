@@ -1,17 +1,21 @@
-﻿from core.base.CoreBaseClassFactory import CoreBaseClassFactory
+from ConfigParser import ConfigParser
+
+from core.base.CoreBaseClassFactory import CoreBaseClassFactory
 from core.utils.Log import Log
 
 
-class CoreBaseClass(object):
+class CoreConfigParser(ConfigParser):
     _nameIndex = 0
-    _namePrefix = "core.base.class"
+    _namePrefix = "core.config.parser"
 
     def __init__(self):
+        super(CoreConfigParser, self).__init__()
         self.sc = None
         self.context = None
         self.callbacks = {}
         self.name = self.generateName()
         CoreBaseClassFactory.construct(self)
+
 
     def get_name(self):
         return self.name
@@ -34,13 +38,6 @@ class CoreBaseClass(object):
     def log(self, message):
         Log.add(message)
 
-    def log(self, *messages):
-        m = ""
-        for message in messages:
-            m += str(message)
-            m += " "
-        Log.add(m)
-
     def generateName(self):
-        CoreBaseClass._nameIndex += 1
-        return CoreBaseClass._namePrefix + str(CoreBaseClass._nameIndex)
+        CoreConfigParser._nameIndex += 1
+        return CoreConfigParser._namePrefix + str(CoreConfigParser._nameIndex)

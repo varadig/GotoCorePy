@@ -1,5 +1,5 @@
 ﻿from core.base.CoreBaseSender import CoreBaseSender
-from core.service import CoreServiceContainer
+from core.service.CoreServiceContainer import CoreServiceContainer
 
 
 class CoreCallback(CoreBaseSender):
@@ -14,23 +14,30 @@ class CoreCallback(CoreBaseSender):
     REMOVE_CALLBACK = ".remove.callback"
 
     def __init__(self, name, collection):
-        super(name, collection)
+        super(CoreCallback, self).__init__(name, collection)
 
     def send(self):
         for service in self.collection:
+            print "send callback:", service
             service.setParams(self.params).execute()
 
     @staticmethod
-    def addCallback(self,target, group, callback):
-        CoreServiceContainer.getInstance().getService(target.name + CoreCallback.ADD_CALLBACK).addParam(
-            CoreCallback.GROUP, group).addParam(CoreCallback.CALLBACK, callback).execute()
+    def addCallback(target, group, callback):
+        CoreServiceContainer.getInstance().getService(target.name + CoreCallback.ADD_CALLBACK)\
+            .addParam(CoreCallback.GROUP, group)\
+            .addParam(CoreCallback.CALLBACK, callback)\
+            .execute()
 
     @staticmethod
-    def addCallbacks(self,target, group, callbacks):
-        CoreServiceContainer.getInstance().getService(target.name + CoreCallback.ADD_CALLBACKS).addParam(
-            CoreCallback.GROUP, group).addParam(CoreCallback.CALLBACKS, callbacks).execute()
+    def addCallbacks(target, group, callbacks):
+        CoreServiceContainer.getInstance().getService(target.name + CoreCallback.ADD_CALLBACKS)\
+            .addParam(CoreCallback.GROUP, group)\
+            .addParam(CoreCallback.CALLBACKS, callbacks)\
+            .execute()
 
     @staticmethod
-    def removeCallbacks(self,target, group, callbacks):
-        CoreServiceContainer.getInstance().getService(target.name + CoreCallback.REMOVE_CALLBACKS).addParam(
-            CoreCallback.GROUP, group).addParam(CoreCallback.CALLBACKS, callbacks).execute()
+    def removeCallbacks(target, group, callbacks):
+        CoreServiceContainer.getInstance().getService(target.name + CoreCallback.REMOVE_CALLBACKS)\
+            .addParam(CoreCallback.GROUP, group)\
+            .addParam(CoreCallback.CALLBACKS, callbacks)\
+            .execute()

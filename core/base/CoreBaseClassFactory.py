@@ -34,6 +34,7 @@ class CoreBaseClassFactory:
     def serviceAddCallbacks( _instance, params):
         group = params[CoreCallback.GROUP]
         callbacks = params[CoreCallback.CALLBACKS]
+
         for callback in callbacks:
             CoreBaseClassFactory.addCallback(_instance, group, callback)
 
@@ -43,14 +44,16 @@ class CoreBaseClassFactory:
         _instance.callbacks[group] = None
 
     @staticmethod
-    def createCallBack( _instance, group):
-        return CoreCallback(group, _instance.callbacks[group])
+    def createCallBack(_instance, group):
+        return CoreCallback(group, _instance.callbacks.get(group, []))
 
     @staticmethod
     def addCallback(_instance, group, callback):
-        if (_instance.callbacks[group] == None):
+        if not _instance.callbacks.has_key(group):
             _instance.callbacks[group] = []
-        _instance.callbacks[group].push(callback)
+
+        _instance.callbacks[group].append(callback)
+        print _instance.callbacks
 
     @staticmethod
     def removeCallback(_instance, group, callback):

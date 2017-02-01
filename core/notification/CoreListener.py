@@ -14,8 +14,8 @@ class CoreListener(CoreBaseFunctionWrapper):
     NAME = "name"
     BASE_NAME = "base.name"
 
-    def __init__(self,name, reference):
-        super(CoreListener, self).__init__(name,reference)
+    def __init__(self, name, reference):
+        super(CoreListener, self).__init__(name, reference)
 
     def notify(self):
         self.call()
@@ -23,15 +23,15 @@ class CoreListener(CoreBaseFunctionWrapper):
     @staticmethod
     def register(name, callback):
         listener = CoreListener(name, callback)
-        sc =CoreServiceContainer.getInstance()
+        sc = CoreServiceContainer.getInstance()
         sc.getService(CoreListener.REGISTER_LISTENER)\
             .addParam(CoreListener.LISTENER, listener)\
             .addParam(CoreListener.NAME, name).execute()
 
     @staticmethod
     def registerForClass(c, callback):
-        name =c.__name__
-        listener= CoreListener(name, callback)
+        name = c.__name__
+        listener = CoreListener(name, callback)
         CoreServiceContainer.getInstance()\
             .getService(CoreListener.REGISTER_LISTENER)\
             .addParam(CoreListener.LISTENER, listener)\

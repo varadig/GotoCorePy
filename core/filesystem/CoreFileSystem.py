@@ -1,4 +1,5 @@
-﻿import os
+﻿import json
+import os
 from shutil import copyfile, copytree, rmtree
 
 from core.base.CoreBaseClass import CoreBaseClass
@@ -21,11 +22,13 @@ class CoreFileSystem(CoreBaseClass):
     COPY_FILE = 'core.filesystem.copy.file'
     COPY_FOLDER = 'core.filesystem.copy.folder'
     CREATE_FILE = 'core.filesystem.create.file'
+    CREATE_JSON_FILE = 'core.filesystem.create.json.file'
     APPEND_TEXT_FILE = 'core.filesystem.append.text.file'
     APPEND_BINARY_FILE = 'core.filesystem.append.binary.file'
     READ_TEXT = 'core.filesystem.read.text'
     READ_BYTES = 'core.filesystem.read.bytes'
     READ_FILE = 'core.filesystem.read.file'
+    READ_JSON_FILE = 'core.filesystem.read.json.file'
     DELETE_FILE = 'core.filesystem.delete.file'
     DELETE_FOLDER = 'core.filesystem.delete.folder'
 
@@ -39,11 +42,13 @@ class CoreFileSystem(CoreBaseClass):
         self.sc.registerService(CoreFileSystem.COPY_FILE, self.serviceCopyFile)
         self.sc.registerService(CoreFileSystem.COPY_FOLDER, self.serviceCopyFolder)
         self.sc.registerService(CoreFileSystem.CREATE_FILE, self.serviceCreateFile)
+        self.sc.registerService(CoreFileSystem.CREATE_JSON_FILE, self.serviceCreateJSONFile)
         self.sc.registerService(CoreFileSystem.APPEND_TEXT_FILE, self.serviceAppendTextFile)
         self.sc.registerService(CoreFileSystem.APPEND_BINARY_FILE, self.serviceAppendBinaryFile)
         self.sc.registerService(CoreFileSystem.READ_TEXT, self.serviceReadText)
         self.sc.registerService(CoreFileSystem.READ_BYTES, self.serviceReadBytes)
         self.sc.registerService(CoreFileSystem.READ_FILE, self.serviceReadFile)
+        self.sc.registerService(CoreFileSystem.READ_JSON_FILE, self.serviceReadJSONFile)
         self.sc.registerService(CoreFileSystem.DELETE_FILE, self.serviceDeleteFile)
         self.sc.registerService(CoreFileSystem.DELETE_FOLDER, self.serviceDeleteFolder)
 
@@ -75,7 +80,11 @@ class CoreFileSystem(CoreBaseClass):
         copytree(params[CoreFileSystem.FROM],params[CoreFileSystem.TO])
 
     def serviceCreateFile(self, params):
-        self.getFile(params[CoreFileSystem.PATH],'a').write(params[CoreFileSystem.CONTENT])
+        self.getFile(params[CoreFileSystem.PATH],'w').write(params[CoreFileSystem.CONTENT])
+
+    def serviceCreateJSONFile(self, params):
+        params[CoreFileSystem.CONTENT] = json.dumps(params[CoreFileSystem.CONTENT])
+        self.serviceCreateFile(params)
 
     def serviceAppendTextFile(self, params):
         self.getFile(params[CoreFileSystem.PATH], 'a').write(params[CoreFileSystem.CONTENT])
@@ -91,6 +100,10 @@ class CoreFileSystem(CoreBaseClass):
 
     def serviceReadFile(self, params):
         return self.getFile(params[CoreFileSystem.PATH]).read()
+
+    def serviceReadJSONFile(self, params):
+        jsonStr = self.getFile(params[CoreFileSystem.PATH]).read()
+        return json.loads(jsonStr)
 
     def serviceDeleteFile(self, params):
         os.remove(params[CoreFileSystem.PATH])

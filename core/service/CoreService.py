@@ -8,9 +8,9 @@ class CoreService(CoreBaseFunctionWrapper):
         super(CoreService, self).__init__(name, reference)
 
     def execute(self):
-        return self.call();
+        return self.call()
 
     def clone(self):
-        service = CoreService(self.name, self.reference);
-        service.addParams(self.params);
-        return service;
+        service = CoreService(self.name, self.reference)
+        service.addParams(self.params)
+        return service

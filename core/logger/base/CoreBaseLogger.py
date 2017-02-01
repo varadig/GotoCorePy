@@ -14,4 +14,4 @@ class CoreBaseLogger(CoreBaseClass):
             print (message)
 
     def createEntryFrom(self, message):
-        return (CoreUtils.timeStamp() + " ----> " + message + self.br);
+        return (CoreUtils.timeStamp() + " ----> " + message);

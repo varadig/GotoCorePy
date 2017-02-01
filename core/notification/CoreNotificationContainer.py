@@ -25,7 +25,7 @@ class CoreNotificationContainer(CoreBaseClass):
         listener = params.get('listener')
 
         if not self.hasListener(name):
-            self.mapping[name] = [];
+            self.mapping[name] = []
 
         self.getListenersOf(name).append(listener);
 
@@ -45,9 +45,8 @@ class CoreNotificationContainer(CoreBaseClass):
                 return listeners.indexOf(listener);
         return -1;
 
-    def createNotification(self,params):
+    def createNotification(self, params):
         name = params.get('name')
-
         return CoreNotification(name, self.getListenersOf(name));
 
     def hasListener(self, name):
