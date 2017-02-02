@@ -5,6 +5,7 @@ from core.filesystem.CoreFileSystem import CoreFileSystem
 from core.logger.CoreLogger import CoreLogger
 from core.logger.CoreLoggerDebug import CoreLoggerDebug
 from core.logger.CoreLoggerFile import CoreLoggerFile
+from core.logger.CoreLoggerMongo import CoreLoggerMongo
 from core.notification.CoreListener import CoreListener
 from core.notification.CoreNotification import CoreNotification
 from core.notification.CoreNotificationContainer import CoreNotificationContainer
@@ -19,7 +20,7 @@ class Main(CoreBaseClass):
 
     def initCoreModules(self):
         CoreFileSystem.getInstance()
-        CoreLogger.getInstance([CoreLoggerDebug(), CoreLoggerFile('gotocorepy.log')])
+        CoreLogger.getInstance([CoreLoggerDebug(), CoreLoggerFile('gotocorepy.log'),CoreLoggerMongo("gotocore","log")])
         CoreNotificationContainer.getInstance()
 
     def initModules(self):
