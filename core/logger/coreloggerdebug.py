@@ -1,4 +1,4 @@
-from core.logger.base.CoreBaseLogger import CoreBaseLogger
+from core.logger.base.corebaselogger import CoreBaseLogger
 
 
 class CoreLoggerDebug(CoreBaseLogger):

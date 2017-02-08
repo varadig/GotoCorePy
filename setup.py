@@ -1,0 +1,20 @@
+from setuptools import setup
+
+setup(name='gotocorepy',
+      version='0.1',
+      description='mvc framework, for python',
+      url='https://github.com/varadig/GotoCorePy',
+      author='Gabor Varadi',
+      author_email='varadi83gabor@gmail.com ',
+      license='MIT',
+      packages=['core',
+                'core.base',
+                'core.context',
+                'core.filesystem',
+                'core.logger',
+                'core.logger.base',
+                'core.notification',
+                'core.python',
+                'core.service',
+                'core.utils'],
+      zip_safe=False)

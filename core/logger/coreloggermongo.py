@@ -1,6 +1,6 @@
 from pymongo.errors import PyMongoError
 
-from core.logger.base.CoreBaseLogger import CoreBaseLogger
+from core.logger.base.corebaselogger import CoreBaseLogger
 from pymongo import MongoClient
 
 from core.utils.CoreUtils import CoreUtils
