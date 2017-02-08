@@ -2,7 +2,7 @@
 import os
 from shutil import copyfile, copytree, rmtree
 
-from core.base.CoreBaseClass import CoreBaseClass
+from core.base.corebaseclass import CoreBaseClass
 
 
 class CoreFileSystem(CoreBaseClass):
@@ -71,7 +71,10 @@ class CoreFileSystem(CoreBaseClass):
         return os.path.exists(params[CoreFileSystem.PATH])
 
     def serviceCreateFolder(self, params):
-        os.mkdir(params[CoreFileSystem.PATH])
+        try:
+            os.mkdir(params[CoreFileSystem.PATH])
+        except Exception as error:
+            print error
 
     def serviceCopyFile(self, params):
         copyfile(params[CoreFileSystem.FROM],params[CoreFileSystem.TO])
@@ -109,7 +112,11 @@ class CoreFileSystem(CoreBaseClass):
         os.remove(params[CoreFileSystem.PATH])
 
     def serviceDeleteFolder(self, params):
-        rmtree(params[CoreFileSystem.PATH])
+        try:
+            rmtree(params[CoreFileSystem.PATH])
+        except Exception as error:
+            print "can't delete directory ", params[CoreFileSystem.PATH]
+            print error
 
     def getFile(self, path, mode='r'):
         return open(path, mode)

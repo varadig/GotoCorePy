@@ -1,4 +1,4 @@
-﻿from core.service.CoreService import CoreService
+﻿from core.service.coreservice import CoreService
 
 
 class CoreServiceContainer:

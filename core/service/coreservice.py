@@ -1,4 +1,4 @@
-﻿from core.base.CoreBaseFunctionWrapper import CoreBaseFunctionWrapper
+﻿from core.base.corebasefunctionwrapper import CoreBaseFunctionWrapper
 
 
 class CoreService(CoreBaseFunctionWrapper):

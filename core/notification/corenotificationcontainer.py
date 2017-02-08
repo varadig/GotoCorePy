@@ -1,6 +1,6 @@
-﻿from core.base.CoreBaseClass import CoreBaseClass
-from core.notification.CoreListener import CoreListener
-from core.notification.CoreNotification import CoreNotification
+﻿from core.base.corebaseclass import CoreBaseClass
+from core.notification.corelistener import CoreListener
+from core.notification.corenotification import CoreNotification
 
 
 class CoreNotificationContainer(CoreBaseClass):

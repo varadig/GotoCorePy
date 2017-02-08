@@ -1,5 +1,5 @@
-from core.base.CoreBaseParameterHolder import CoreBaseParameterHolder
-from core.service.CoreServiceContainer import CoreServiceContainer
+from core.base.corebaseparameterholder import CoreBaseParameterHolder
+from core.service.coreservicecontainer import CoreServiceContainer
 
 
 class CoreContext(CoreBaseParameterHolder):

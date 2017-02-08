@@ -1,4 +1,4 @@
-﻿from core.base.CoreBaseParameterHolder import CoreBaseParameterHolder
+﻿from core.base.corebaseparameterholder import CoreBaseParameterHolder
 
 
 class CoreBaseFunctionWrapper(CoreBaseParameterHolder):

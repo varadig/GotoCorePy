@@ -2,7 +2,7 @@
 
 import datetime
 
-from core.base.CoreBaseClass import CoreBaseClass
+from core.base.corebaseclass import CoreBaseClass
 
 
 class CoreUtils(CoreBaseClass):

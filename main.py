@@ -1,13 +1,14 @@
 import os
 
-from core.base.CoreBaseClass import CoreBaseClass
-from core.filesystem.CoreFileSystem import CoreFileSystem
-from core.logger.CoreLogger import CoreLogger
-from core.logger.CoreLoggerDebug import CoreLoggerDebug
-from core.logger.CoreLoggerFile import CoreLoggerFile
-from core.notification.CoreListener import CoreListener
-from core.notification.CoreNotification import CoreNotification
-from core.notification.CoreNotificationContainer import CoreNotificationContainer
+from core.base.corebaseclass import CoreBaseClass
+from core.base.corecallback import CoreCallback
+from core.filesystem.corefilesystem import CoreFileSystem
+from core.logger.corelogger import CoreLogger
+from core.logger.coreloggerdebug import CoreLoggerDebug
+from core.logger.coreloggerfile import CoreLoggerFile
+from core.notification.corelistener import CoreListener
+from core.notification.corenotification import CoreNotification
+from core.notification.corenotificationcontainer import CoreNotificationContainer
 
 
 class Main(CoreBaseClass):
@@ -27,18 +28,21 @@ class Main(CoreBaseClass):
         NotificationTest.getInstance()
 
     def startApplication(self):
-        self.sc.getService(ControllerTest.SERVICE)\
-            .addParam('foo', 'service.bar')\
-            .execute()
+        # self.sc.getService(ControllerTest.SERVICE)\
+        #     .addParam('foo', 'service.bar')\
+        #     .execute()
+        CoreCallback.addCallback(self, "test.callback", self.sc.getService(ControllerTest.SERVICE))
 
         CoreNotification.createNotification(NotificationTest.NOTIFICATION)\
             .addParam('foo', 'notification.bar')\
             .send()
 
+        self.createCallBack("test.callback").addParam("foo", "bar kaka").send()
+
 
 class ControllerTest(CoreBaseClass):
 
-    SERVICE='controller.test.service'
+    SERVICE = 'controller.test.service'
     instance=None
 
     @staticmethod

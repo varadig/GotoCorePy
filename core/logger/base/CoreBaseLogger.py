@@ -1,5 +1,5 @@
-﻿from core.base.CoreBaseClass import CoreBaseClass
-from core.utils.CoreUtils import CoreUtils
+﻿from core.base.corebaseclass import CoreBaseClass
+from core.utils.coreutils import CoreUtils
 
 
 class CoreBaseLogger(CoreBaseClass):

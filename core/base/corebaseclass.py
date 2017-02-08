@@ -1,5 +1,5 @@
-﻿from core.base.CoreBaseClassFactory import CoreBaseClassFactory
-from core.utils.Log import Log
+﻿from core.base.corebaseclassfactory import CoreBaseClassFactory
+from core.utils.log import Log
 
 
 class CoreBaseClass(object):

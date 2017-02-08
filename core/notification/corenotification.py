@@ -1,5 +1,5 @@
-﻿from core.base.CoreBaseSender import CoreBaseSender
-from core.service.CoreServiceContainer import CoreServiceContainer
+﻿from core.base.corebasesender import CoreBaseSender
+from core.service.coreservicecontainer import CoreServiceContainer
 
 
 class CoreNotification(CoreBaseSender):

@@ -1,4 +1,4 @@
-from core.service.CoreServiceContainer import CoreServiceContainer
+from core.service.coreservicecontainer import CoreServiceContainer
 
 
 class Log(object):

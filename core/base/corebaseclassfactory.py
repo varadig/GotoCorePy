@@ -1,8 +1,8 @@
 import array
 
-from core.base.CoreCallback import CoreCallback
-from core.context.CoreContext import CoreContext
-from core.service.CoreServiceContainer import CoreServiceContainer
+from core.base.corecallback import CoreCallback
+from core.context.corecontext import CoreContext
+from core.service.coreservicecontainer import CoreServiceContainer
 
 
 class CoreBaseClassFactory:

@@ -1,5 +1,5 @@
-﻿from core.base.CoreBaseSender import CoreBaseSender
-from core.service.CoreServiceContainer import CoreServiceContainer
+﻿from core.base.corebasesender import CoreBaseSender
+from core.service.coreservicecontainer import CoreServiceContainer
 
 
 class CoreCallback(CoreBaseSender):
@@ -19,7 +19,7 @@ class CoreCallback(CoreBaseSender):
     def send(self):
         for service in self.collection:
             print "send callback:", service
-            service.setParams(self.params).execute()
+            service.addParams(self.params).execute()
 
     @staticmethod
     def addCallback(target, group, callback):

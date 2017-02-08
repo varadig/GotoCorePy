@@ -1,5 +1,5 @@
-﻿from core.base.CoreBaseFunctionWrapper import CoreBaseFunctionWrapper
-from core.service.CoreServiceContainer import CoreServiceContainer
+﻿from core.base.corebasefunctionwrapper import CoreBaseFunctionWrapper
+from core.service.coreservicecontainer import CoreServiceContainer
 
 
 class CoreListener(CoreBaseFunctionWrapper):
