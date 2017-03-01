@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='gotocorepy',
-      version='0.3',
+      version='0.4',
       description='mvc framework, for python',
       url='https://github.com/varadig/GotoCorePy',
       author='Gabor Varadi',

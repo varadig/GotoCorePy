@@ -8,4 +8,4 @@ class CoreLoggerFile(CoreBaseLogger):
         self.file = open(file, 'a')
 
     def addLogEntry(self, message):
-        self.file.write(self.createEntryFrom(message))
+        self.file.write(self.createEntryFrom(message)+str("\n"))
