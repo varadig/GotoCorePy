@@ -10,8 +10,8 @@ class CoreBaseLogger(CoreBaseClass):
         for message in messages:
             self.addLogEntry(str(message));
 
-        def addLogEntry(self, message):
-            print (message)
+    def addLogEntry(self, message):
+        print (message)
 
     def createEntryFrom(self, message):
         return (CoreUtils.timeStamp() + " ----> " + message);

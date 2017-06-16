@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='gotocorepy',
-      version='0.4',
+      version='0.0.5',
       description='mvc framework, for python',
       url='https://github.com/varadig/GotoCorePy',
       author='Gabor Varadi',
@@ -17,4 +17,7 @@ setup(name='gotocorepy',
                 'core.python',
                 'core.service',
                 'core.utils'],
+    install_requires=[
+          'hurry.filesize',
+      ],
       zip_safe=False)
